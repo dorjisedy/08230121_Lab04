@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My Learning Journey</title>
+    <link rel="stylesheet" href="{% static 'dsJourney/styles/style.css' %}">
+    <link rel="icon" href="{% static 'dsJourney/favicon.ico' %}">
+</head>
+<body>
+    <nav class="site-nav">
+        <div class="container">
+            <a class="brand" href="{% url 'index' %}">My Learning Journey</a>
+            <a class="nav-link" href="{% url 'aboutMe' %}">About Me</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container hero-inner">
+            <h1>My Learning Journey</h1>
+            <p class="lead">Small steps. Big progress. A record of what I learn along the way.</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="journey-list">
+            {% if journeys %}
+                <div class="grid">
+                {% for journey in journeys %}
+                    <article class="card">
+                        <h2 class="card-title">{{ journey.title }}</h2>
+                        <p class="card-date">{{ journey.date }}</p>
+                        <p class="card-body">{{ journey.description }}</p>
+                    </article>
+                {% endfor %}
+                </div>
+            {% else %}
+                <div class="empty">
+                    <p>No learning records found yet. Use the admin to add entries.</p>
+                </div>
+            {% endif %}
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 My Learning Journey | Designed by Dorji Selden</p>
+        </div>
+    </footer>
+
+</body>
+</html>

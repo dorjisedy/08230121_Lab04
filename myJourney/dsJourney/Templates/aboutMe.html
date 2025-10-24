@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>About Me</title>
+    <link rel="stylesheet" href="{% static 'dsJourney/styles/style.css' %}">
+    <!-- Add your avatar at static/dsJourney/images/avatar.jpg -->
+    <!-- You can also place other images in static/dsJourney/images/ -->
+</head>
+
+<body>
+    <nav class="site-nav">
+        <div class="container">
+            <a class="brand" href="{% url 'index' %}">My Learning Journey</a>
+            <a class="nav-link" href="{% url 'index' %}">Home</a>
+        </div>
+    </nav>
+
+    <main class="container about">
+        <section class="about-card">
+            <div class="about-top">
+                <!-- Image wrapper with overlay text and transitions -->
+                <div class="image-wrapper">
+                    <img src="{% static 'images/profile.JPG' %}" alt="Profile Picture" class="avatar">
+                    <h2 class="image-overlay-text">About Me</h2>
+                </div>
+
+                <div class="about-text">
+                    <h1>About Me</h1>
+                    <p><strong>Name:</strong> Dorji Selden</p>
+                    <p><strong>College:</strong> Samtse College of Education (SCoE)</p>
+                </div>
+            </div>
+
+            <div class="about-details">
+                <h3>Interests</h3>
+                <p>I enjoy trying new things and learning from every experience. Growing up, 
+                    I learned that the best way to build confidence is by stepping outside my comfort zone. 
+                    I have tried team sports, experimented with coding and web projects, and taken part 
+                    in community events.Each new activity taught me something — how to communicate better, 
+                    solve unexpected problems, or manage my time. My goal is to keep building a varied skill 
+                    set and use what I learn to contribute to projects that matter to me and my community</p>
+
+                <h3>Hobbies</h3>
+                <p>Playing sports (football, basketball, volleyball, badminton) and dancing.</p>
+
+                <a class="btn" href="{% url 'index' %}">Back to Journey</a>
+            </div>
+        </section>
+
+        <!-- Creative Container for Admin Entries -->
+        <section class="container creative">
+            <h2>People in Our Community</h2>
+            <table class="people-table">
+                <tbody>
+                    {% for about in abouts %}
+                    <tr>
+                        <td>
+                            <h3>{{ about.name }}</h3>
+                            <p><strong>College:</strong> {{ about.college }}</p>
+                            <p><strong>Email:</strong> {{ about.email|default:"Not provided" }}</p>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td>No people added yet. <a href="/admin/">Add some in the admin panel!</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 My Learning Journey | Designed by Dorji Selden</p>
+        </div>
+    </footer>
+</body>
+</html>
